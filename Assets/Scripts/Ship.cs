@@ -2,17 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ship : MonoBehaviour
+namespace NathanHoward
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Ship : MonoBehaviour
     {
-        
-    }
+        //Creation of the 2 lists
+        List<string> currentCrewNames;
+        List<string> currentCrewHobbies;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //public method to add crewmembers to the ship
+        public void AddToShip(bool isAlien, string newCrewName, string newCrewHobby)
+        {
+            //Checking to see if the new crew member is an alien
+            if (isAlien == false)
+            {
+                //Add the new crew member to the list along with their hobby
+                currentCrewNames.Add(newCrewName);
+                currentCrewHobbies.Add(newCrewHobby);
+            }
+            else
+            {
+                //Code that calls the killing of a random amount of Crew Members
+                EliminateCrewmates(Random.Range(1,3));
+            }
+        }
+        private void EliminateCrewmates(int amountKilled)
+        {
+            Debug.Log("Alien Detected! You have just lost " + amountKilled + " crewmates!");
+        }
     }
 }
