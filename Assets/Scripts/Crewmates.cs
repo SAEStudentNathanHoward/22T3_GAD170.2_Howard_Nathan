@@ -33,6 +33,7 @@ namespace NathanHoward
         [SerializeField] TMP_Text crewNameText;
         [SerializeField] TMP_Text crewHobyText;
         
+        // On start of the program it creates a random crewmate
         private void Start()
         {
             CreateCrewmate(Random.Range(1, 30), Random.Range(1, 30));

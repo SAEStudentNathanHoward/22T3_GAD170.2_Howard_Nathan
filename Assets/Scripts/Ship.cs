@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace NathanHoward
 {
@@ -10,16 +11,43 @@ namespace NathanHoward
         [SerializeField] List<string> currentCrewNames;
         [SerializeField] List<string> currentCrewHobbies;
 
+        // game objects that link objects in my scene
         [SerializeField] GameObject mainCanvas;
+        [SerializeField] GameObject endCanvas;
         [SerializeField] GameObject bloodSplatter;
 
-        private int currentCrewCount = 0;
+        [SerializeField] TMP_Text crewNameOutput1;
+        [SerializeField] TMP_Text crewNameOutput2;
+        [SerializeField] TMP_Text crewNameOutput3;
+        [SerializeField] TMP_Text crewNameOutput4;
+        [SerializeField] TMP_Text crewNameOutput5;
+        [SerializeField] TMP_Text crewNameOutput6;
+        [SerializeField] TMP_Text crewNameOutput7;
+        [SerializeField] TMP_Text crewNameOutput8;
+        [SerializeField] TMP_Text crewNameOutput9;
 
+        private int currentCrewCount = 0;
+        
+        // Update slowluy removes bloodsplatter if it is on the screen
         private void Update()
         {
             if (bloodSplatter.GetComponent<CanvasGroup>().alpha > 0f)
             {
                 bloodSplatter.GetComponent<CanvasGroup>().alpha -= 0.001f;
+            }
+
+            if (currentCrewCount != 0)
+            {
+                // Updating the text on the canvas to the names and hobbies of the hired crewmates
+                crewNameOutput1.text = currentCrewNames[0] + " | " + currentCrewHobbies[0];
+                crewNameOutput2.text = currentCrewNames[1] + " | " + currentCrewHobbies[1];
+                crewNameOutput3.text = currentCrewNames[2] + " | " + currentCrewHobbies[2];
+                crewNameOutput4.text = currentCrewNames[3] + " | " + currentCrewHobbies[3];
+                crewNameOutput5.text = currentCrewNames[4] + " | " + currentCrewHobbies[4];
+                crewNameOutput6.text = currentCrewNames[5] + " | " + currentCrewHobbies[5];
+                crewNameOutput7.text = currentCrewNames[6] + " | " + currentCrewHobbies[6];
+                crewNameOutput8.text = currentCrewNames[7] + " | " + currentCrewHobbies[7];
+                crewNameOutput9.text = currentCrewNames[8] + " | " + currentCrewHobbies[8];
             }
         }
 
@@ -40,6 +68,7 @@ namespace NathanHoward
                 if (currentCrewCount == 10)
                 {
                     mainCanvas.SetActive(false);
+                    endCanvas.SetActive(true);
                 }
             }
             else
@@ -80,9 +109,5 @@ namespace NathanHoward
             Debug.Log("Alien Detected! You have just lost " + amountKilled + " crewmates!");
         }
 
-        public void ShowCrewmates()
-        {
-
-        }
     }
 }
